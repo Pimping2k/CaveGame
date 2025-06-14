@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ServiceLocatorRelated
 {
-    public class ServiceLocator
+    public static class ServiceLocator
     {
         private static readonly Dictionary<Type, object> _services = new();
         

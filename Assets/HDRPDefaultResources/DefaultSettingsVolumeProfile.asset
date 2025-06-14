@@ -783,6 +783,24 @@ MonoBehaviour:
   m_SampleCount:
     m_OverrideState: 1
     m_Value: 10
+--- !u!114 &-452589686060706983
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
+  m_Name: DiffusionProfileList
+  m_EditorClassIdentifier: 
+  active: 1
+  diffusionProfiles:
+    m_OverrideState: 1
+    m_Value:
+    - {fileID: 11400000, guid: 404820c4cf36ad944862fa59c56064f0, type: 2}
+    - {fileID: 11400000, guid: 2384dbf2c1c420f45a792fbc315fbfb1, type: 2}
 --- !u!114 &-280794300995736116
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -831,48 +849,19 @@ MonoBehaviour:
   m_Name: DefaultSettingsVolumeProfile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 7686318427622180703}
-  - {fileID: -1016694868962581565}
-  - {fileID: 7502528774814404555}
-  - {fileID: 7542669330009093999}
-  - {fileID: 1501199423866068322}
-  - {fileID: 5315503232242033309}
-  - {fileID: 1932259527246508038}
-  - {fileID: 448115243408767295}
-  - {fileID: -7089757308646879465}
-  - {fileID: -8770122170507510650}
-  - {fileID: 4981354747274665315}
-  - {fileID: 5305602202033311358}
-  - {fileID: 2202560442507070462}
-  - {fileID: 2970436534689154139}
-  - {fileID: 1183615174036217945}
-  - {fileID: -3940113087723687205}
-  - {fileID: 2903340560075565118}
-  - {fileID: 1115430828236232074}
-  - {fileID: 8968385599545567032}
-  - {fileID: -7066109809366609409}
-  - {fileID: 8669194462247220124}
-  - {fileID: -280794300995736116}
-  - {fileID: -8979065704296072575}
-  - {fileID: -130834276782081079}
-  - {fileID: -8225221829640241007}
-  - {fileID: -6683430743594911083}
-  - {fileID: -5057116816203935486}
-  - {fileID: 3937206366190697308}
-  - {fileID: 4244994676471839031}
-  - {fileID: -1463561853091287824}
-  - {fileID: 5595693707374513948}
-  - {fileID: -8151465600209648108}
-  - {fileID: 3731015826811466748}
-  - {fileID: -4028628380183439982}
-  - {fileID: 4140983408666558931}
-  - {fileID: 2928234467277118656}
-  - {fileID: -7101833146767350630}
-  - {fileID: -3259083523320282473}
-  - {fileID: 6062743976181852072}
-  - {fileID: -7931956864019251571}
-  - {fileID: -3294540526481445616}
-  - {fileID: -4294148659375429219}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: -452589686060706983}
 --- !u!114 &448115243408767295
 MonoBehaviour:
   m_ObjectHideFlags: 3
