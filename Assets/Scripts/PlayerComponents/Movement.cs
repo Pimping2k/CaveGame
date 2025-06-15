@@ -16,10 +16,12 @@ namespace PlayerComponents
         
         private Vector2 _input;
         
-        private void Awake()
+        private async void Awake()
         {
             _inputService = ServiceLocator.Resolve<IInputService>();
 
+            await UniTask.WaitUntil(() => _inputService.IsInitialized);
+            
             _inputService.Player.Attack.performed += OnAttackPerformed;
             _inputService.Player.Move.performed += OnMovePerformed;
             _inputService.Player.Move.canceled += OnMoveCanceled;
