@@ -11,10 +11,12 @@ namespace PlayerComponents
     {
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private float _speed;
+        [SerializeField] private float _rotationSpeed;
 
         private IInputService _inputService;
         
-        private Vector2 _input;
+        private Vector2 _movementInput;
+        private Vector2 _rotationInput;
         
         private async void Awake()
         {
@@ -22,9 +24,16 @@ namespace PlayerComponents
 
             await UniTask.WaitUntil(() => _inputService.IsInitialized);
             
-            _inputService.Player.Attack.performed += OnAttackPerformed;
             _inputService.Player.Move.performed += OnMovePerformed;
             _inputService.Player.Move.canceled += OnMoveCanceled;
+            _inputService.Player.Look.performed += OnLookPerformed;
+        }
+
+        private void OnDestroy()
+        {
+            _inputService.Player.Move.performed -= OnMovePerformed;
+            _inputService.Player.Move.canceled -= OnMoveCanceled;
+            _inputService.Player.Look.performed -= OnLookPerformed;
         }
 
         private void FixedUpdate()
@@ -34,19 +43,20 @@ namespace PlayerComponents
 
         #region Events
 
+        private void OnLookPerformed(InputAction.CallbackContext obj)
+        {
+            _rotationInput = obj.ReadValue<Vector2>();
+            Debug.Log(_rotationInput);
+        }
+
         private void OnMovePerformed(InputAction.CallbackContext obj)
         {
-            _input = obj.ReadValue<Vector2>();
+            _movementInput = obj.ReadValue<Vector2>();
         }
 
         private void OnMoveCanceled(InputAction.CallbackContext obj)
         {
-            _input = Vector2.zero;
-        }
-
-        private void OnAttackPerformed(InputAction.CallbackContext obj)
-        {
-            Debug.Log("Attacked");
+            _movementInput = Vector2.zero;
         }
 
         #endregion
@@ -55,7 +65,7 @@ namespace PlayerComponents
 
         private void ApplyMovement()
         {
-            _rigidbody.linearVelocity = new Vector3(_input.x, 0f, _input.y) * _speed;
+            _rigidbody.linearVelocity = new Vector3(_movementInput.x, 0f, _movementInput.y) * _speed;
         }
 
         private void ApplyRotation()
