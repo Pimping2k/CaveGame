@@ -36,6 +36,13 @@ namespace PlayerComponents
             _inputService.Player.Look.performed -= OnLookPerformed;
         }
 
+
+        private void OnDestroy()
+        {
+            _inputService.Player.Move.performed -= OnMovePerformed;
+            _inputService.Player.Move.canceled -= OnMoveCanceled;
+        }
+
         private void FixedUpdate()
         {
             ApplyMovement();

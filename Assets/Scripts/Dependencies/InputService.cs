@@ -7,7 +7,6 @@ namespace Dependencies
     public class InputService : MonoBehaviour, IInputService
     {
         private InputSystem_Actions _inputSystem;
-        
         public InputSystem_Actions InputSystem => _inputSystem;
         public InputSystem_Actions.PlayerActions Player { get; private set; }
         public InputSystem_Actions.UIActions UI { get; private set; }
@@ -21,7 +20,6 @@ namespace Dependencies
             
             _inputSystem.Enable();
             Player.Enable();
-
             IsInitialized = true;
         }
     }
