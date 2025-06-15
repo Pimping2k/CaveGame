@@ -21,6 +21,7 @@ namespace PlayerComponents
 
             _inputService.Player.Attack.performed += OnAttackPerformed;
             _inputService.Player.Move.performed += OnMovePerformed;
+            _inputService.Player.Move.canceled += OnMoveCanceled;
         }
 
         private void FixedUpdate()
@@ -28,15 +29,24 @@ namespace PlayerComponents
             ApplyMovement();
         }
 
+        #region Events
+
         private void OnMovePerformed(InputAction.CallbackContext obj)
         {
             _input = obj.ReadValue<Vector2>();
+        }
+
+        private void OnMoveCanceled(InputAction.CallbackContext obj)
+        {
+            _input = Vector2.zero;
         }
 
         private void OnAttackPerformed(InputAction.CallbackContext obj)
         {
             Debug.Log("Attacked");
         }
+
+        #endregion
 
         #region Movement calculations
 
