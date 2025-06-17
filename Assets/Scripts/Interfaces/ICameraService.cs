@@ -5,6 +5,6 @@ namespace Interfaces
 {
     public interface ICameraService : IService
     {
-        public CinemachineCamera Camera { get; }
+        public CinemachineCamera CurrentCamera { get; }
     }
 }

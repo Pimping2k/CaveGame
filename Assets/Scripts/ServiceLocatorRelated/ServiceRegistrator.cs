@@ -36,6 +36,7 @@ namespace ServiceLocatorRelated
                     foreach (var iface in interfaces)
                     {
                         ServiceLocator.Register(iface, service);
+                        DontDestroyOnLoad(instance);
                     }
                 }
             }

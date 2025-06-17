@@ -8,12 +8,12 @@ namespace Dependencies
     public class CameraService : MonoBehaviour, ICameraService
     {
         [SerializeField] private CinemachineCamera _camera;
-        public bool IsInitialized { get; private set; }
-        public CinemachineCamera Camera => _camera;
+        
+        public CinemachineCamera CurrentCamera { get; private set; }
         
         private void Awake()
         {
-            IsInitialized = true;
+            CurrentCamera = _camera;
         }
     }
 }

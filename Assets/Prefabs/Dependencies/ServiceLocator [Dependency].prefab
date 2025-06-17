@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _instances:
   - {fileID: 0}
+  - {fileID: 0}

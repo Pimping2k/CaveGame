@@ -1,7 +1,9 @@
 ﻿using System;
+using Configs;
 using Cysharp.Threading.Tasks;
 using Interfaces;
 using ServiceLocatorRelated;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,24 +11,31 @@ namespace PlayerComponents
 {
     public class Movement : MonoBehaviour
     {
+        [SerializeField] private Transform _playerBody;
         [SerializeField] private Rigidbody _rigidbody;
-        [SerializeField] private float _speed;
-        [SerializeField] private float _rotationSpeed;
+        [SerializeField] private MovementConfig _config;
 
         private IInputService _inputService;
-        
+        private ICameraService _cameraService;
+
         private Vector2 _movementInput;
         private Vector2 _rotationInput;
-        
+        private CinemachineCamera _playerCamera;
+        private float _xRotation = 0f;
+
         private async void Awake()
         {
             _inputService = ServiceLocator.Resolve<IInputService>();
+            _cameraService = ServiceLocator.Resolve<ICameraService>();
 
             await UniTask.WaitUntil(() => _inputService.IsInitialized);
-            
+
+            _playerCamera = _cameraService.CurrentCamera;
+
             _inputService.Player.Move.performed += OnMovePerformed;
             _inputService.Player.Move.canceled += OnMoveCanceled;
             _inputService.Player.Look.performed += OnLookPerformed;
+            _inputService.Player.Look.canceled += OnLookCanceled;
         }
 
         private void OnDestroy()
@@ -34,13 +43,7 @@ namespace PlayerComponents
             _inputService.Player.Move.performed -= OnMovePerformed;
             _inputService.Player.Move.canceled -= OnMoveCanceled;
             _inputService.Player.Look.performed -= OnLookPerformed;
-        }
-
-
-        private void OnDestroy()
-        {
-            _inputService.Player.Move.performed -= OnMovePerformed;
-            _inputService.Player.Move.canceled -= OnMoveCanceled;
+            _inputService.Player.Look.canceled -= OnLookCanceled;
         }
 
         private void FixedUpdate()
@@ -48,13 +51,12 @@ namespace PlayerComponents
             ApplyMovement();
         }
 
-        #region Events
-
-        private void OnLookPerformed(InputAction.CallbackContext obj)
+        private void LateUpdate()
         {
-            _rotationInput = obj.ReadValue<Vector2>();
-            Debug.Log(_rotationInput);
+            ApplyCameraRotation();
         }
+
+        #region Events
 
         private void OnMovePerformed(InputAction.CallbackContext obj)
         {
@@ -66,19 +68,39 @@ namespace PlayerComponents
             _movementInput = Vector2.zero;
         }
 
+        private void OnLookPerformed(InputAction.CallbackContext obj)
+        {
+            _rotationInput = obj.ReadValue<Vector2>();
+        }
+
+        private void OnLookCanceled(InputAction.CallbackContext obj)
+        {
+            _rotationInput = Vector2.zero;
+        }
+
         #endregion
 
-        #region Movement calculations
+        #region Movement and Rotation calculation
 
         private void ApplyMovement()
         {
-            _rigidbody.linearVelocity = new Vector3(_movementInput.x, 0f, _movementInput.y) * _speed;
+            Vector3 move = _playerBody.forward * _movementInput.y + _playerBody.right * _movementInput.x;
+            Vector3 velocity = move.normalized * _config.MovementSpeed;
+            _rigidbody.linearVelocity = new Vector3(velocity.x, _rigidbody.linearVelocity.y, velocity.z);
         }
 
-        private void ApplyRotation()
+        private void ApplyCameraRotation()
         {
+            float mouseX = _rotationInput.x * _config.RotationSpeed * Time.deltaTime;
+            float mouseY = _rotationInput.y * _config.RotationSpeed * Time.deltaTime;
+
+            _xRotation -= mouseY;
+            _xRotation = Mathf.Clamp(_xRotation, -_config.CameraClampValue, _config.CameraClampValue);
+
+            _playerCamera.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+            _playerBody.Rotate(Vector3.up * mouseX);
         }
-        
+
         #endregion
     }
 }

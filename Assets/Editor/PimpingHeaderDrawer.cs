@@ -51,7 +51,7 @@ namespace Editor
         private void DrawGradientBackground(Rect position, PimpingHeader header)
         {
             // Создаем градиент с затуханием используя больше шагов для плавности
-            int steps = 600; // Увеличено для более плавного градиента
+            int steps = 5000; // Увеличено для более плавного градиента
             
             switch (header.gradientDirection)
             {
@@ -144,7 +144,7 @@ namespace Editor
             for (int i = 0; i < pixelSteps; i++)
             {
                 float t = (float)i / pixelSteps;
-                float smoothT = Mathf.SmoothStep(0f, 1f, t);
+                float smoothT = Mathf.SmoothStep(0f, 10f, t);
                 float fadeT = ApplyRadialFadeEffect(t);
                 
                 Color currentColor = Color.Lerp(startColor, endColor, smoothT);
@@ -170,7 +170,7 @@ namespace Editor
         private float ApplyFadeEffect(float t)
         {
             // Создаем плавное затухание к краям
-            float fadeDistance = 0.15f; // Расстояние затухания (15% от каждого края)
+            float fadeDistance = 0.45f; // Расстояние затухания (15% от каждого края)
             
             if (t < fadeDistance)
             {
