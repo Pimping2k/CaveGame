@@ -10,10 +10,12 @@ namespace Dependencies
         [SerializeField] private CinemachineCamera _camera;
         
         public CinemachineCamera CurrentCamera { get; private set; }
+        public bool IsInitialized { get; }
         
         private void Awake()
         {
             CurrentCamera = _camera;
         }
+
     }
 }
