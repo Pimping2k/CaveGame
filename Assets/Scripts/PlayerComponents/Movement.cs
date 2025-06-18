@@ -13,24 +13,21 @@ namespace PlayerComponents
     {
         [SerializeField] private Transform _playerBody;
         [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private CinemachineCamera _playerCamera;
         [SerializeField] private MovementConfig _config;
-
+        
         private IInputService _inputService;
-        private ICameraService _cameraService;
 
         private Vector2 _movementInput;
         private Vector2 _rotationInput;
-        private CinemachineCamera _playerCamera;
         private float _xRotation = 0f;
 
         private async void Awake()
         {
             _inputService = ServiceLocator.Resolve<IInputService>();
-            _cameraService = ServiceLocator.Resolve<ICameraService>();
 
             await UniTask.WaitUntil(() => _inputService.IsInitialized);
-
-            _playerCamera = _cameraService.CurrentCamera;
+            
 
             _inputService.Player.Move.performed += OnMovePerformed;
             _inputService.Player.Move.canceled += OnMoveCanceled;
@@ -91,8 +88,8 @@ namespace PlayerComponents
 
         private void ApplyCameraRotation()
         {
-            float mouseX = _rotationInput.x * _config.RotationSpeed * Time.deltaTime;
-            float mouseY = _rotationInput.y * _config.RotationSpeed * Time.deltaTime;
+            float mouseX = _rotationInput.x * _config.RotationSpeed * Time.fixedDeltaTime;
+            float mouseY = _rotationInput.y * _config.RotationSpeed * Time.fixedDeltaTime;
 
             _xRotation -= mouseY;
             _xRotation = Mathf.Clamp(_xRotation, -_config.CameraClampValue, _config.CameraClampValue);
