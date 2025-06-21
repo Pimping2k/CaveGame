@@ -1,6 +1,6 @@
 ﻿using ServiceLocatorRelated;
 
-namespace Interfaces
+namespace Interfaces.Services
 {
     public interface IInputService : IService
     {

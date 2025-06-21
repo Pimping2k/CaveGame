@@ -24,12 +24,13 @@ namespace Gameplay.FlashingLight
 
         private void Awake()
         {
+            _flashlightControl.ChangedState += OnChangedState;
+            
             _currentBatteryCharge = _config.MaxBatteryCharge;
             _maxIntensity = _lightSource.intensity;
-            
-            _flashlightControl.ChangedState += OnChangedState;
+            _light.gameObject.SetActive(false);
         }
-
+        
         private void OnDestroy()
         {
             _flashlightControl.ChangedState -= OnChangedState;
@@ -79,7 +80,7 @@ namespace Gameplay.FlashingLight
             {
                 while (_currentState)
                 {
-                    _lightSource.intensity = Mathf.Lerp(0f, _maxIntensity, _currentBatteryCharge / _config.MaxBatteryCharge * Time.deltaTime);
+                    _lightSource.intensity = Mathf.Lerp(0f, _maxIntensity, _currentBatteryCharge / _config.MaxBatteryCharge);
                     DecreaseCharge();
                     await UniTask.WaitForSeconds(UPDATE_RATE,cancellationToken: gameObject.GetCancellationTokenOnDestroy());
                 }

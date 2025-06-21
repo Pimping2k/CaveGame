@@ -1,13 +1,10 @@
-﻿using Configs;
-using Configs.Player;
+﻿using Configs.Player;
 using Cysharp.Threading.Tasks;
-using Interfaces;
-using ObjectPooling.BulletPooling;
+using Interfaces.Services;
 using ServiceLocatorRelated;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Pool;
 
 namespace PlayerComponents
 {

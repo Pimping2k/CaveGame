@@ -1,6 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Interfaces;
+using Interfaces.Services;
 using ServiceLocatorRelated;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,6 +25,12 @@ namespace Gameplay.FlashingLight
             
             _inputService.Player.ToggleFlashlight.performed += OnToggleFlashlightPerformed;
             _flashlight.Discharged += OnDischarged;
+        }
+
+        private void OnDestroy()
+        {
+            _inputService.Player.ToggleFlashlight.performed -= OnToggleFlashlightPerformed;
+            _flashlight.Discharged -= OnDischarged;
         }
 
         private void OnToggleFlashlightPerformed(InputAction.CallbackContext ctx)
