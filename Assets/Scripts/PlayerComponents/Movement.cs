@@ -1,11 +1,13 @@
-﻿using System;
-using Configs;
+﻿using Configs;
+using Configs.Player;
 using Cysharp.Threading.Tasks;
 using Interfaces;
+using ObjectPooling.BulletPooling;
 using ServiceLocatorRelated;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Pool;
 
 namespace PlayerComponents
 {
@@ -20,14 +22,13 @@ namespace PlayerComponents
 
         private Vector2 _movementInput;
         private Vector2 _rotationInput;
-        private float _xRotation = 0f;
+        private float _xRotation;
 
         private async void Awake()
         {
             _inputService = ServiceLocator.Resolve<IInputService>();
 
             await UniTask.WaitUntil(() => _inputService.IsInitialized);
-            
 
             _inputService.Player.Move.performed += OnMovePerformed;
             _inputService.Player.Move.canceled += OnMoveCanceled;

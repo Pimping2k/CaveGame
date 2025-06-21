@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ServiceLocatorRelated
 {
+    [DefaultExecutionOrder(-4000)]
     public static class ServiceLocator
     {
         private static readonly Dictionary<Type, object> _services = new();
