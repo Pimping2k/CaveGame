@@ -18,9 +18,12 @@ namespace ServiceLocatorRelated
         {
             _services[type] = instance;
 
-            foreach (var service in _services)
+            if (instance is IService service)
             {
-                Debug.Log($"Services Type: {service.Key} and Services Value: {service.Value}");
+                service.IsInitialized = true;
+                
+                Debug.Log(service.IsInitialized);
+                Debug.Log($"Services Type: {_services[type].GetType()} and Services Value: {instance.GetType().Name}");
             }
         }
 

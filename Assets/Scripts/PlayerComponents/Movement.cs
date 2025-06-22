@@ -21,12 +21,10 @@ namespace PlayerComponents
         private Vector2 _rotationInput;
         private float _xRotation;
 
-        private async void Awake()
+        private void Awake()
         {
             _inputService = ServiceLocator.Resolve<IInputService>();
-
-            await UniTask.WaitUntil(() => _inputService.IsInitialized);
-
+            
             _inputService.Player.Move.performed += OnMovePerformed;
             _inputService.Player.Move.canceled += OnMoveCanceled;
             _inputService.Player.Look.performed += OnLookPerformed;

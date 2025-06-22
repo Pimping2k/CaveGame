@@ -7,6 +7,5 @@ namespace Interfaces.Services
         public InputSystem_Actions InputSystem { get; }
         public InputSystem_Actions.PlayerActions Player { get; }
         public InputSystem_Actions.UIActions UI { get; }
-        public bool IsInitialized { get; }
     }
 }

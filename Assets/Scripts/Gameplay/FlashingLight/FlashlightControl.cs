@@ -17,11 +17,9 @@ namespace Gameplay.FlashingLight
 
         public event Action<bool> ChangedState;
         
-        private async void Awake()
+        private void Awake()
         {
             _inputService = ServiceLocator.Resolve<IInputService>();
-            
-            await UniTask.WaitUntil(() => _inputService.IsInitialized);
             
             _inputService.Player.ToggleFlashlight.performed += OnToggleFlashlightPerformed;
             _flashlight.Discharged += OnDischarged;

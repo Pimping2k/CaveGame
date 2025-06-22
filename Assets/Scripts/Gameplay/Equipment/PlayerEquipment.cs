@@ -20,12 +20,10 @@ namespace Gameplay.Equipment
         private bool _equipped;
         private Equipmentable _currentEquipment;
 
-        private async void Awake()
+        private void Awake()
         {
             _inputService = ServiceLocator.Resolve<IInputService>();
-
-            await UniTask.WaitUntil(() => _inputService.IsInitialized);
-
+            
             _inputService.Player.EquipMain.performed += OnMainEquip;
             _inputService.Player.EquipSecondary.performed += OnSecondaryEquip;
         }

@@ -14,12 +14,11 @@ namespace Dependencies
         public InputSystem_Actions InputSystem => _inputSystem;
         public InputSystem_Actions.PlayerActions Player { get; private set; }
         public InputSystem_Actions.UIActions UI { get; private set; }
-        public bool IsInitialized { get; private set; }
+        public bool IsInitialized { get; set; }
 
         private void Awake()
         {
             _cursorLockMode = CursorLockMode.Locked;
-            Cursor.visible = false;
             _inputSystem = new InputSystem_Actions();
             Player = _inputSystem.Player;
             UI = _inputSystem.UI;

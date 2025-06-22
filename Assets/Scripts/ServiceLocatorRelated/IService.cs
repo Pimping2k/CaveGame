@@ -2,6 +2,6 @@
 {
     public interface IService
     {
-        public bool IsInitialized { get; }
+        public bool IsInitialized { get; set; }
     }
 }
