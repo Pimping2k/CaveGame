@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f592749bf4c42d4beaa479cdd1b607f, type: 3}
   m_Name: GunConfig_00
   m_EditorClassIdentifier: 
+  _maxAmmo: 0
+  _reloadTime: 0
+  _shootingSpeed: 0
   _damage: 0
   _weakSpotDamageMultiplier: 0
   _heatDamageMultiplier: {x: 0, y: 0}

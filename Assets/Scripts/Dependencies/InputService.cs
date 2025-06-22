@@ -19,6 +19,7 @@ namespace Dependencies
         private void Awake()
         {
             _cursorLockMode = CursorLockMode.Locked;
+            Cursor.visible = false;
             _inputSystem = new InputSystem_Actions();
             Player = _inputSystem.Player;
             UI = _inputSystem.UI;

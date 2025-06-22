@@ -18,7 +18,7 @@ namespace Interfaces.Gameplay
         public event Action RequestEquip;
         public event Action RequestUnequip;
         
-        protected virtual void Equip(){}
-        protected virtual void UnEquip(){}
+        public virtual void Equip(){}
+        public virtual void UnEquip(){}
     }
 }

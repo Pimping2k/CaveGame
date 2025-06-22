@@ -9,9 +9,9 @@ namespace ObjectPooling
         [SerializeField] private T _baseItem;
         [SerializeField] private int _poolSize;
         
-        private readonly List<T> _pool = new();
+        protected readonly List<T> _pool = new();
 
-        private void Awake()
+        public virtual void Awake()
         {
             for (int i = 0; i < _poolSize; i++)
             {
