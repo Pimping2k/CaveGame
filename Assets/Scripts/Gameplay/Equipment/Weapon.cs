@@ -32,20 +32,27 @@ namespace Gameplay.Equipment
             {
                 _inputSubscribed = true;
                 _inputService.Player.MainAction.performed += OnMainActionPerformed;
+                _inputService.Player.MainAction.started += OnMainActionStarted;
                 _inputService.Player.MainAction.canceled += OnMainActionCanceled;
             }
             else if(!state && _inputSubscribed)
             {
                 _inputSubscribed = false;
                 _inputService.Player.MainAction.performed -= OnMainActionPerformed;
+                _inputService.Player.MainAction.started -= OnMainActionStarted;
                 _inputService.Player.MainAction.canceled -= OnMainActionCanceled;
             }
         }
 
         #region Input Events
 
-        private void OnMainActionPerformed(InputAction.CallbackContext ctx)
+        private void OnMainActionStarted(InputAction.CallbackContext ctx)
         {
+            Shoot();
+        }
+
+        private void OnMainActionPerformed(InputAction.CallbackContext ctx)
+        { 
             Shoot();
         }
 
@@ -75,7 +82,7 @@ namespace Gameplay.Equipment
 
         private void Shoot()
         {
-            _bulletPool.ReleaseBullet(_muzzle);
+            _bulletPool.ReleaseBullet(_muzzle, _muzzle.forward);
         }
 
         #endregion

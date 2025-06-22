@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolContainer: {fileID: 4115363651351750440}
   _baseItem: {fileID: 7233034811955274709, guid: 04d4a40f7fbd9dd4984428ea91571a73, type: 3}
-  _poolSize: 30
+  _poolSize: 100

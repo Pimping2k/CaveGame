@@ -14,11 +14,14 @@ namespace ObjectPooling.BulletPooling
             }
         }
 
-        public async void ReleaseBullet(Transform releasePosition)
+        public async void ReleaseBullet(Transform releasePosition, Vector3 direction)
         {
             var bullet = GetObjectFromPool();
             bullet.transform.position = releasePosition.position;
-            bullet.Rigidbody.AddForce(releasePosition.forward * bullet.Speed, ForceMode.Acceleration);
+            
+            Vector3 shootDirection = direction.normalized;
+            bullet.Rigidbody.linearVelocity = shootDirection * bullet.Speed;
+
             await UniTask.WaitForSeconds(bullet.LifeTime);
             ReturnObjectInPool(bullet);
         }

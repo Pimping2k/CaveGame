@@ -18,11 +18,6 @@ namespace ServiceLocatorRelated
         private void Start()
         {
             Debug.Log($"Total registered services: {ServiceLocator.Services.Count}");
-
-            foreach (var (key, value) in ServiceLocator.Services)
-            {
-                Debug.Log($"[ServiceLocator] Registered: {key.Name} -> {value}");
-            }
         }
         
         private void InitializeServices()

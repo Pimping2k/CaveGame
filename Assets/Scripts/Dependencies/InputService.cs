@@ -8,7 +8,7 @@ namespace Dependencies
     public class InputService : MonoBehaviour, IInputService
     {
         private InputSystem_Actions _inputSystem;
-        private CursorLockMode _cursorLockMode;
+        private CursorLockMode _cursorLockMode = CursorLockMode.Locked;
         
         public CursorLockMode CursorLockMode => _cursorLockMode;
         public InputSystem_Actions InputSystem => _inputSystem;
@@ -18,7 +18,8 @@ namespace Dependencies
 
         private void Awake()
         {
-            _cursorLockMode = CursorLockMode.Locked;
+            Cursor.lockState = _cursorLockMode;
+            Cursor.visible = _cursorLockMode == CursorLockMode.Locked;
             _inputSystem = new InputSystem_Actions();
             Player = _inputSystem.Player;
             UI = _inputSystem.UI;
