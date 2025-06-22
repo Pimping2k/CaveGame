@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxAmmo: 0
   _reloadTime: 0
-  _shootingSpeed: 0.01
+  _shootingSpeed: 0.15
   _damage: 0
   _weakSpotDamageMultiplier: 0
   _heatDamageMultiplier: {x: 0, y: 0}

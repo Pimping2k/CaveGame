@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
 using Interfaces.Gameplay;
 using Interfaces.Services;
 using ServiceLocatorRelated;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 namespace Gameplay.Equipment
 {
@@ -26,6 +23,12 @@ namespace Gameplay.Equipment
             
             _inputService.Player.EquipMain.performed += OnMainEquip;
             _inputService.Player.EquipSecondary.performed += OnSecondaryEquip;
+        }
+
+        private void OnDestroy()
+        {
+            _inputService.Player.EquipMain.performed -= OnMainEquip;
+            _inputService.Player.EquipSecondary.performed -= OnSecondaryEquip;
         }
 
         private void OnMainEquip(InputAction.CallbackContext ctx)

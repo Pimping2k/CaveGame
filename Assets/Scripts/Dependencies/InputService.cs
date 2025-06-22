@@ -1,6 +1,4 @@
-﻿using Interfaces;
-using Interfaces.Services;
-using ServiceLocatorRelated;
+﻿using Interfaces.Services;
 using UnityEngine;
 
 namespace Dependencies
@@ -8,7 +6,8 @@ namespace Dependencies
     public class InputService : MonoBehaviour, IInputService
     {
         private InputSystem_Actions _inputSystem;
-        private CursorLockMode _cursorLockMode = CursorLockMode.Locked;
+        
+        private readonly CursorLockMode _cursorLockMode = CursorLockMode.Locked;
         
         public CursorLockMode CursorLockMode => _cursorLockMode;
         public InputSystem_Actions InputSystem => _inputSystem;

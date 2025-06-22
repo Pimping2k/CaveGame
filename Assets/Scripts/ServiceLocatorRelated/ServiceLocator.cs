@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -58,7 +57,7 @@ namespace ServiceLocatorRelated
             _services.Clear();
         }
 
-        public static async Task<bool> IsInitialized()
+        public static async UniTask<bool> IsInitialized()
         {
             await UniTask.WaitUntil(() => _services.Values.OfType<IService>().All(service => service.IsInitialized));
             return true;
