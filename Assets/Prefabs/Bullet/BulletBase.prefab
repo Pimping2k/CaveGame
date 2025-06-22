@@ -48,8 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 713238296859772947}
-  _speed: 100
-  _lifeTime: 3
+  _config: {fileID: 11400000, guid: d41ca879fcc5d164e9baf4d6950b9c37, type: 2}
 --- !u!54 &713238296859772947
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -92,7 +91,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

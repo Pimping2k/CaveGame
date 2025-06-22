@@ -11,7 +11,13 @@ namespace ObjectPooling.BulletPooling
             foreach (var bullet in _pool)
             {
                 ReturnObjectInPool(bullet);
+                bullet.Hitted += OnHitted;
             }
+        }
+
+        private void OnHitted(Bullet bullet)
+        {
+            ReturnObjectInPool(bullet);
         }
 
         public async void ReleaseBullet(Transform releasePosition, Vector3 direction)

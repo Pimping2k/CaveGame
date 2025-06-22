@@ -1,4 +1,5 @@
 ﻿using Configs.Gameplay;
+using Cysharp.Threading.Tasks;
 using Interfaces.Gameplay;
 using Interfaces.Services;
 using ObjectPooling.BulletPooling;
@@ -51,9 +52,13 @@ namespace Gameplay.Equipment
             Shoot();
         }
 
-        private void OnMainActionPerformed(InputAction.CallbackContext ctx)
-        { 
-            Shoot();
+        private async void OnMainActionPerformed(InputAction.CallbackContext ctx)
+        {
+            while (ctx.ReadValue<float>() > 0.5f)
+            {
+                Shoot();
+                await UniTask.WaitForSeconds(_config.ShootingSpeed);
+            }
         }
 
         private void OnMainActionCanceled(InputAction.CallbackContext ctx)

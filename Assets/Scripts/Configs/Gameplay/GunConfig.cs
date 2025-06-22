@@ -21,5 +21,14 @@ namespace Configs.Gameplay
         [PimpingHeader("Heat Settings", HeaderColor.Indigo)] 
         [SerializeField] private float _heatCooldown;
         [SerializeField] private float _heatStartTime;
+
+        public int MaxAmmo => _maxAmmo;
+        public float ReloadTime => _reloadTime;
+        public float ShootingSpeed => _shootingSpeed;
+        public float Damage => _damage;
+        public float WeakSpotDamageMultiplier => _weakSpotDamageMultiplier;
+        public Vector2 HeatDamageMultiplier => _heatDamageMultiplier;
+        public float HeatCooldown => _heatCooldown;
+        public float HeatStartTime => _heatStartTime;
     }
 }

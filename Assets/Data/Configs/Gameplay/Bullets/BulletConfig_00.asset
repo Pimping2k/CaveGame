@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f592749bf4c42d4beaa479cdd1b607f, type: 3}
-  m_Name: GunConfig_00
+  m_Script: {fileID: 11500000, guid: 0e34db7c31f54b178f940f761adca49e, type: 3}
+  m_Name: BulletConfig_00
   m_EditorClassIdentifier: 
-  _maxAmmo: 0
-  _reloadTime: 0
-  _shootingSpeed: 0.01
-  _damage: 0
-  _weakSpotDamageMultiplier: 0
-  _heatDamageMultiplier: {x: 0, y: 0}
-  _heatCooldown: 0
-  _heatStartTime: 0
+  _speed: 100
+  _lifeTime: 3
