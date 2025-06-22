@@ -1,44 +1,15 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
-using Interfaces.Gameplay;
-using Interfaces.Services;
-using ServiceLocatorRelated;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using Interfaces.Gameplay;
 
 namespace Gameplay.Equipment
 {
-    public class Gun : MonoBehaviour, IEquipmentable
+    public class Gun : Equipmentable
     {
-        private IInputService _inputService;
-
-        private async void Awake()
+        protected override void Equip()
         {
-            _inputService = ServiceLocator.Resolve<IInputService>();
-
-            await UniTask.WaitUntil(() => _inputService.IsInitialized);
-            
-            _inputService.Player.EquipMain.performed += OnMainEquip;
         }
 
-        private void OnDestroy()
+        protected override void UnEquip()
         {
-            _inputService.Player.EquipMain.performed -= OnMainEquip;
-        }
-
-        private void OnMainEquip(InputAction.CallbackContext ctx)
-        {
-            
-        }
-
-        public void Equip()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void UnEquip()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

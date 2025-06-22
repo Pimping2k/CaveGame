@@ -182,7 +182,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Shoot"",
+                    ""name"": ""MainAction"",
                     ""type"": ""Button"",
                     ""id"": ""a57c20d9-2d22-470a-a3e2-e0d7b2946ced"",
                     ""expectedControlType"": """",
@@ -613,7 +613,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""MainAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1233,7 +1233,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_ToggleFlashlight = m_Player.FindAction("ToggleFlashlight", throwIfNotFound: true);
-        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_MainAction = m_Player.FindAction("MainAction", throwIfNotFound: true);
         m_Player_EquipMain = m_Player.FindAction("EquipMain", throwIfNotFound: true);
         m_Player_EquipSecondary = m_Player.FindAction("EquipSecondary", throwIfNotFound: true);
         // UI
@@ -1339,7 +1339,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_ToggleFlashlight;
-    private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_MainAction;
     private readonly InputAction m_Player_EquipMain;
     private readonly InputAction m_Player_EquipSecondary;
     /// <summary>
@@ -1394,9 +1394,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @ToggleFlashlight => m_Wrapper.m_Player_ToggleFlashlight;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Shoot".
+        /// Provides access to the underlying input action "Player/MainAction".
         /// </summary>
-        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @MainAction => m_Wrapper.m_Player_MainAction;
         /// <summary>
         /// Provides access to the underlying input action "Player/EquipMain".
         /// </summary>
@@ -1461,9 +1461,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ToggleFlashlight.started += instance.OnToggleFlashlight;
             @ToggleFlashlight.performed += instance.OnToggleFlashlight;
             @ToggleFlashlight.canceled += instance.OnToggleFlashlight;
-            @Shoot.started += instance.OnShoot;
-            @Shoot.performed += instance.OnShoot;
-            @Shoot.canceled += instance.OnShoot;
+            @MainAction.started += instance.OnMainAction;
+            @MainAction.performed += instance.OnMainAction;
+            @MainAction.canceled += instance.OnMainAction;
             @EquipMain.started += instance.OnEquipMain;
             @EquipMain.performed += instance.OnEquipMain;
             @EquipMain.canceled += instance.OnEquipMain;
@@ -1511,9 +1511,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ToggleFlashlight.started -= instance.OnToggleFlashlight;
             @ToggleFlashlight.performed -= instance.OnToggleFlashlight;
             @ToggleFlashlight.canceled -= instance.OnToggleFlashlight;
-            @Shoot.started -= instance.OnShoot;
-            @Shoot.performed -= instance.OnShoot;
-            @Shoot.canceled -= instance.OnShoot;
+            @MainAction.started -= instance.OnMainAction;
+            @MainAction.performed -= instance.OnMainAction;
+            @MainAction.canceled -= instance.OnMainAction;
             @EquipMain.started -= instance.OnEquipMain;
             @EquipMain.performed -= instance.OnEquipMain;
             @EquipMain.canceled -= instance.OnEquipMain;
@@ -1891,12 +1891,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnToggleFlashlight(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "MainAction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnShoot(InputAction.CallbackContext context);
+        void OnMainAction(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "EquipMain" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
