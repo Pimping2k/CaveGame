@@ -16,18 +16,17 @@ namespace Bootstrap
         private async void Awake()
         {
             DontDestroyOnLoad(_mainCamera);
-            bool result = await ServiceLocator.IsInitialized();
-            await LoadingScreen();
-            await UniTask.WaitUntil(() => result,cancellationToken: gameObject.GetCancellationTokenOnDestroy());
-            SceneManager.LoadScene(Tags.SceneNames.GAMEPLAY);
+            await ServiceLocator.IsInitialized();
+            var operation = SceneManager.LoadSceneAsync(Tags.SceneNames.GAMEPLAY);
+            await LoadingScreen(operation);
         }
 
-        private async UniTask LoadingScreen()
+        private async UniTask LoadingScreen(AsyncOperation operation)
         {
-            while (_loadingBar.fillAmount < 1f)
+            while (!operation.isDone)
             {
-                _loadingBar.fillAmount += 0.1f;
-                await UniTask.Yield(cancellationToken: gameObject.GetCancellationTokenOnDestroy());
+                _loadingBar.fillAmount += operation.progress;
+                await UniTask.Yield();
             }
         }
     }
