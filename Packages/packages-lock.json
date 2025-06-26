@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.malanek.serializedcollections": {
+      "version": "https://github.com/malanek/SerializedCollections.git?path=Runtime",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "fbf9fbf982830d4d76244f7ec954e2725210dc96"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.6",
       "depth": 0,

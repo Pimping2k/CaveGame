@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.malanek.serializedcollections": "https://github.com/malanek/SerializedCollections.git?path=Runtime",
     "com.unity.ai.navigation": "2.0.6",
     "com.unity.cinemachine": "3.1.4",
     "com.unity.collab-proxy": "2.8.2",
