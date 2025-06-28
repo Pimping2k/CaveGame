@@ -1,4 +1,5 @@
 ﻿using System;
+using CustomEditorAttributes;
 using UnityEngine;
 
 namespace Interfaces.Gameplay
@@ -11,6 +12,7 @@ namespace Interfaces.Gameplay
     
     public abstract class Equipmentable : MonoBehaviour
     {
+        [PimpingHeader("Gun settings", HeaderColor.Cyan)]
         [SerializeField] private EquipmentType _type;
         
         public EquipmentType Type => _type;
